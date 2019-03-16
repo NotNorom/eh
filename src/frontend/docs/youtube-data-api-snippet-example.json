@@ -1,0 +1,64 @@
+{
+    "kind": "youtube#videoListResponse",
+    "etag": "\"XpPGQXPnxQJhLgs6enD_n8JR4Qk/kyoxBVG_8613mDRq6AHU1IdXpYo\"",
+    "pageInfo":
+    {
+        "totalResults": 1,
+        "resultsPerPage": 1
+    },
+    "items": [
+    {
+        "kind": "youtube#video",
+        "etag": "\"XpPGQXPnxQJhLgs6enD_n8JR4Qk/qI2cMFfVvKKkcsu6rvxh_iULdyc\"",
+        "id": "WZFVeSZrM_I",
+        "snippet":
+        {
+            "publishedAt": "2019-01-16T16:10:35.000Z",
+            "channelId": "UCuljdTGoJjKNoBrmcY4epYg",
+            "title": "Rival Consoles - Recovery",
+            "description": "",
+            "thumbnails":
+            {
+                "default":
+                {
+                    "url": "https://i.ytimg.com/vi/WZFVeSZrM_I/default.jpg",
+                    "width": 120,
+                    "height": 90
+                },
+                "medium":
+                {
+                    "url": "https://i.ytimg.com/vi/WZFVeSZrM_I/mqdefault.jpg",
+                    "width": 320,
+                    "height": 180
+                },
+                "high":
+                {
+                    "url": "https://i.ytimg.com/vi/WZFVeSZrM_I/hqdefault.jpg",
+                    "width": 480,
+                    "height": 360
+                },
+                "standard":
+                {
+                    "url": "https://i.ytimg.com/vi/WZFVeSZrM_I/sddefault.jpg",
+                    "width": 640,
+                    "height": 480
+                },
+                "maxres":
+                {
+                    "url": "https://i.ytimg.com/vi/WZFVeSZrM_I/maxresdefault.jpg",
+                    "width": 1280,
+                    "height": 720
+                }
+            },
+            "channelTitle": "Underground Station N9",
+            "tags": ["Rival Consoles", "Rival Consoles new", "Rival Consoles music", "Rival Consoles recovery", "new music", "good music", "tehchno", "underground station n9", "rival consoles untravel", "rival consoles odyssey", "rival consoles live", "erased tapes", "electronic music", "dance music", "music video", "rival consoles hidden", "rival consoles persona", "rival consoles new album", "rival consoles boiler room", "rival consoles dreamer's wake", "rival consoles them is us", "good music 2018"],
+            "categoryId": "10",
+            "liveBroadcastContent": "none",
+            "localized":
+            {
+                "title": "Rival Consoles - Recovery",
+                "description": ""
+            }
+        }
+    }]
+}
