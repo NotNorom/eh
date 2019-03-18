@@ -16,8 +16,8 @@ class VideoPlayer extends Component {
                 <YouTube 
                     videoId={this.props.videoId}
                     id={style.videoPlayer}
-                    className={""}
-                    containerClassName={""}
+                    className={style.iframe}
+                    containerClassName={style.iframeContainer}
                     opts={opts}
                     onReady={(a) => console.log("onReady ", a)}
                     onPlay={(a) => console.log("onPlay ", a)}
@@ -28,8 +28,8 @@ class VideoPlayer extends Component {
                     onPlaybackRateChange={(a) => console.log("onPlaybackRateChange ", a)}
                     onPlaybackQualityChange={(a) => console.log("onPlaybackQualityChange ", a)}
                 />
-                <div className={""}>
-                    <span className={style.nowPlaying}>NOW PLAYING</span>
+                <div className={style.controlsAndMetaData}>
+                    <span className={style.nowPlaying}>NOW PLAYING</span><br />
                     <span className={style.videoTitle}>"videoTitle"</span>
                     <div className={style.controls}>
                         <button>Pause</button>

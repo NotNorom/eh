@@ -4,3 +4,46 @@
     margin: 0 auto;
     max-width: 860px;
 }
+
+.iframeContainer {
+    padding: 1em 0.5em 1em 1em;
+    height: calc(225px + 2em);
+}
+
+.iframe {
+    height: 225px;
+}
+
+.controlsAndMetaData {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 1em 1em 1em 0.5em ;
+}
+
+.videoTitle {
+    font-weight: 700;
+}
+
+.controls {
+    display: flex;
+    flex-grow: 1;
+    padding: 1em 0 0 0;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.controls > button {
+    height: 100%;
+    width: 100%;
+}
+
+.linkToVideo {
+    margin: 1em 0 0 0;
+    text-decoration: none;
+    color: #fff;
+}
+
+.linkToVideo:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
