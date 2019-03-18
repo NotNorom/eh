@@ -79,10 +79,10 @@ class QueueEntry extends Component {
             <li className={style.queueEntry}>
                 <span className={style.songTitle}>{this.state.videoData.snippet.title}</span>
                 <div className={style.controls}>
-                    <button onClick={this.props.play}>Play</button>
-                    <button onClick={this.props.moveUp}>Up</button>
-                    <button onClick={this.props.moveDown}>Down</button>
-                    <button onClick={this.props.delete}>Delete</button>
+                    <button onClick={this.props.onPlay}>Play</button>
+                    <button onClick={this.props.onMoveUp}>Up</button>
+                    <button onClick={this.props.onMoveDown}>Down</button>
+                    <button onClick={this.props.onDelete}>Delete</button>
                 </div>
             </li>
         );
