@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import VideoPlayer from "./VideoPlayer/VideoPlayer";
 import Queue from "./Queue/Queue";
+import "./fonts/sinkin-sans/sinkin-sans.css";
 import "./App.css";
 
 
