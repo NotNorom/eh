@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import {
+    getVideoDataFromId,
+} from "../apiHelper.js";
 import style from "./QueueEntry.module.css";
-
-import config from "../config.js";
 
 class QueueEntry extends Component {
     constructor(props) {
@@ -65,19 +66,11 @@ class QueueEntry extends Component {
     }
 
     componentDidMount() {
-        fetch(config.youtubeApiEndpoint + `?id=${this.props.entry}&part=snippet&key=${config.youtubeApiKey}`, {
-            method: "GET",
-        }).then((response) => {
-            if (response.status !== 200) {
-                console.log("ERROR: " + JSON.stringify(response));
-            }
-            response.json().then((data) => {
-                console.log(this);
-                var ytVideoData = data["items"][0];
-                this.setState({
-                    videoData: ytVideoData,
-                }, () => {console.log(JSON.stringify(ytVideoData))});
-            })
+        getVideoDataFromId(this.props.entry, (data) => {
+            var ytVideoData = data["items"][0];
+            this.setState({
+                videoData: ytVideoData,
+            }, () => {console.log(JSON.stringify(ytVideoData))});
         });
     }
 
