@@ -1,8 +1,40 @@
 import React, { Component } from "react";
-import style from "./VideoPlayer.module.css";
 import YouTube from 'react-youtube';
+import {
+    getVideoDataFromId,
+} from "../apiHelper.js";
+import style from "./VideoPlayer.module.css";
+
 
 class VideoPlayer extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            title: "",
+        }
+    }
+
+    componentDidMount() {
+        if (this.props.videoId === undefined || this.props.videoId === "") {
+            return;
+        }
+        getVideoDataFromId(this.props.videoId, (data) => {
+            var ytVideoData = data["items"][0];
+            var title = ytVideoData["snippet"]["title"];
+            this.setState({title: title});
+        });
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.videoId !== prevProps.videoId) {
+            getVideoDataFromId(this.props.videoId, (data) => {
+                var ytVideoData = data["items"][0];
+                var title = ytVideoData["snippet"]["title"];
+                this.setState({title: title});
+            });
+        }
+    }
+
     render() {
         const opts = {
             height: '225',
@@ -30,7 +62,7 @@ class VideoPlayer extends Component {
                 />
                 <div className={style.controlsAndMetaData}>
                     <span className={style.nowPlaying}>NOW PLAYING</span><br />
-                    <span className={style.videoTitle}>"videoTitle"</span>
+                    <span className={style.videoTitle}>{this.state.title}</span>
                     <div className={style.controls}>
                         <button>Pause</button>
                         <button>Play</button>
