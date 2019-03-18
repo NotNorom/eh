@@ -14,6 +14,12 @@ class App extends Component {
                 "WZFVeSZrM_I",
             ]
         }
+        this.setCurrentlyPlaying = this.setCurrentlyPlaying.bind(this);
+    }
+
+    setCurrentlyPlaying(videoId) {
+        console.info("Setting currentlyPlaying: " + JSON.stringify(videoId));
+        this.setState({currentlyPlaying: videoId});
     }
 
     render() {
