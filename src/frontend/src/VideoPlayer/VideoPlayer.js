@@ -8,7 +8,7 @@ class VideoPlayer extends Component {
             height: '225',
             width: '400',
             playerVars: { // https://developers.google.com/youtube/player_parameters
-                autoplay: 1
+                autoplay: 0,
             }
         };
         return (
@@ -19,14 +19,14 @@ class VideoPlayer extends Component {
                     className={""}
                     containerClassName={""}
                     opts={opts}
-                    onReady={console.log("onReady")}
-                    onPlay={console.log("onPlay")}
-                    onPause={console.log("onPause")}
-                    onEnd={console.log("onEnd")}
-                    onError={console.log("onError")}
-                    onStateChange={console.log("onStateChange")}
-                    onPlaybackRateChange={console.log("onPlaybackRateChange")}
-                    onPlaybackQualityChange={console.log("onPlaybackQualityChange")}
+                    onReady={(a) => console.log("onReady ", a)}
+                    onPlay={(a) => console.log("onPlay ", a)}
+                    onPause={(a) => console.log("onPause ", a)}
+                    onEnd={(a) => console.log("onEnd ", a)}
+                    onError={(a) => console.log("onError ", a)}
+                    onStateChange={(a) => console.log("onStateChange ", a)}
+                    onPlaybackRateChange={(a) => console.log("onPlaybackRateChange ", a)}
+                    onPlaybackQualityChange={(a) => console.log("onPlaybackQualityChange ", a)}
                 />
                 <div className={""}>
                     <span className={style.nowPlaying}>NOW PLAYING</span>
@@ -36,6 +36,12 @@ class VideoPlayer extends Component {
                         <button>Play</button>
                         <button>Skip</button>
                     </div>
+                    <a
+                        href={"https://youtu.be/"+this.props.videoId}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={style.linkToVideo}
+                    >https://youtu.be/{this.props.videoId}</a>
                 </div>
             </div>
         );
