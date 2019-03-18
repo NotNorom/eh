@@ -29,7 +29,10 @@ class App extends Component {
                     <VideoPlayer videoId={this.state.currentlyPlaying}/>
                 </header>
                 <main>
-                    <Queue queue={this.state.queue}/>
+                    <Queue
+                        queue={this.state.queue}
+                        onPlay={this.setCurrentlyPlaying}
+                    />
                 </main>
             </React.Fragment>
         );
