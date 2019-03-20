@@ -69,11 +69,11 @@ class VideoPlayer extends Component {
                         <button>Skip</button>
                     </div>
                     <a
-                        href={"https://youtu.be/"+this.props.videoId}
+                        href={this.props.videoId ? "https://youtu.be/" + this.props.videoId : "#"}
                         target="_blank"
                         rel="noopener noreferrer"
                         className={style.linkToVideo}
-                    >https://youtu.be/{this.props.videoId}</a>
+                    >{this.props.videoId ? "https://youtu.be/" + this.props.videoId : ""}</a>
                 </div>
             </div>
         );
