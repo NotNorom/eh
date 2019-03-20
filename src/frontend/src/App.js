@@ -16,11 +16,39 @@ class App extends Component {
             ]
         }
         this.setCurrentlyPlaying = this.setCurrentlyPlaying.bind(this);
+        this.moveEntryUp = this.moveEntryUp.bind(this);
+        this.moveEntryDown = this.moveEntryDown.bind(this);
+        this.deleteEntry = this.deleteEntry.bind(this);
     }
 
     setCurrentlyPlaying(videoId) {
         console.info("Setting currentlyPlaying: " + JSON.stringify(videoId));
         this.setState({currentlyPlaying: videoId});
+    }
+
+    moveEntryUp(videoId, index) {
+        console.info(`Moving ${videoId} at index: ${index} up`);
+        if(index === 0) {return} // first entry
+        var newQueue = this.state.queue;
+        // https://stackoverflow.com/questions/872310/javascript-swap-array-elements
+        [newQueue[index-1], newQueue[index]] = [newQueue[index], newQueue[index-1]];
+        this.setState({queue: newQueue});
+    }
+
+    moveEntryDown(videoId, index) {
+        console.info(`Moving ${videoId} at index: ${index} down`);
+        if(index === this.state.queue.length-1) {return} // last entry
+        var newQueue = this.state.queue;
+        // https://stackoverflow.com/questions/872310/javascript-swap-array-elements
+        [newQueue[index+1], newQueue[index]] = [newQueue[index], newQueue[index+1]];
+        this.setState({queue: newQueue});
+    }
+
+    deleteEntry(videoId, index) {
+        console.info(`Deleting ${videoId} at index: ${index}`);
+        var newQueue = this.state.queue;
+        newQueue.splice(index, 1);
+        this.setState({queue: newQueue});
     }
 
     render() {
@@ -33,6 +61,9 @@ class App extends Component {
                     <Queue
                         queue={this.state.queue}
                         onPlay={this.setCurrentlyPlaying}
+                        onMoveUp={this.moveEntryUp}
+                        onMoveDown={this.moveEntryDown}
+                        onDelete={this.deleteEntry}
                     />
                 </main>
             </React.Fragment>
