@@ -100,7 +100,15 @@ class App extends Component {
         return (
             <React.Fragment>
                 <header>
-                    <VideoPlayer videoId={this.state.currentlyPlaying}/>
+                    <VideoPlayer
+                        videoId={this.state.currentlyPlaying}
+                        onSkip={this.skip}
+                        autoPlay={this.state.autoPlay}
+                        onAutoPlayChange={this.handleAutoPlayChange}
+                        timerSeconds={this.state.timerSeconds}
+                        onTimerSecondsChange={this.handleTimerSecondsChange}
+                        onVideoEnd={this.handleVideoEnd}
+                    />
                 </header>
                 <main>
                     <Queue
