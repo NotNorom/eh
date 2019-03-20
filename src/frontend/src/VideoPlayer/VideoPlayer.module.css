@@ -26,7 +26,12 @@
 }
 
 .controls {
-    display: flex;
+    display: grid;
+    grid-template-rows: 3em 3em;
+    grid-row-gap: 1em;
+    grid-template-areas:
+        "skip    skip"
+        "autplay timer";
     flex-grow: 1;
     padding: 1em 0 0 0;
     width: 100%;
@@ -34,8 +39,20 @@
 }
 
 .controls > button {
-    height: 100%;
     width: 100%;
+    grid-area: skip;
+}
+
+.controls > label {
+    line-height: 3em;
+}
+
+.controls input {
+    line-height: 3em;
+    height: 3em;
+    float: right;
+    text-align: right;
+    margin: 0 0 0 1em;
 }
 
 .linkToVideo {

@@ -64,9 +64,25 @@ class VideoPlayer extends Component {
                     <span className={style.nowPlaying}>NOW PLAYING</span><br />
                     <span className={style.videoTitle}>{this.state.title}</span>
                     <div className={style.controls}>
-                        <button>Pause</button>
-                        <button>Play</button>
-                        <button>Skip</button>
+                        <button onClick={this.props.onSkip}>Skip</button>
+                        <label htmlFor="autoPlayToggle">Autoplay:
+                            <input
+                                name="autoPlayToggle"
+                                type="checkbox"
+                                value={this.props.autoplay}
+                                onChange={this.props.onAutoPlayChange}
+                            />
+                        </label>
+                        <label htmlFor="timerSeconds">Timer (seconds):
+                            <input
+                                name="timerSeconds"
+                                type="number"
+                                min="0"
+                                disabled={!this.props.autoPlay}
+                                value={this.props.timerSeconds}
+                                onChange={this.props.onTimerSecondsChange}
+                            />
+                        </label>
                     </div>
                     <a
                         href={this.props.videoId ? "https://youtu.be/" + this.props.videoId : "#"}
