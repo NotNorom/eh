@@ -9,6 +9,8 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            autoPlay: false,
+            timerSeconds: 0,
             currentlyPlaying: "b06pKMxF6h8",
             queue: [
                 "lBsq4DC6Jv4",
@@ -21,6 +23,9 @@ class App extends Component {
         this.moveEntryUp = this.moveEntryUp.bind(this);
         this.moveEntryDown = this.moveEntryDown.bind(this);
         this.deleteEntry = this.deleteEntry.bind(this);
+
+        this.handleAutoPlayChange = this.handleAutoPlayChange.bind(this);
+        this.handleTimerSecondsChange = this.handleTimerSecondsChange.bind(this);
     }
 
     skip() {
@@ -58,6 +63,18 @@ class App extends Component {
         var newQueue = this.state.queue;
         newQueue.splice(index, 1);
         this.setState({queue: newQueue});
+    }
+
+    handleAutoPlayChange() {
+        this.setState({autoPlay: !this.state.autoPlay}, () => {
+            console.info(`Changing autoplay to ${this.state.autoPlay}`);
+        });
+    }
+
+    handleTimerSecondsChange(event) {
+        this.setState({timerSeconds: event.target.value}, () => {
+            console.info(`Changing timerSeconds to ${this.state.timerSeconds}`);
+        });
     }
 
     render() {
