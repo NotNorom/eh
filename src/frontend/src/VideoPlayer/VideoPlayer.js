@@ -40,7 +40,7 @@ class VideoPlayer extends Component {
             height: '225',
             width: '400',
             playerVars: { // https://developers.google.com/youtube/player_parameters
-                autoplay: 0,
+                autoplay: 1,
             }
         };
         return (
@@ -54,8 +54,8 @@ class VideoPlayer extends Component {
                     onReady={(a) => console.log("onReady ", a)}
                     onPlay={(a) => console.log("onPlay ", a)}
                     onPause={(a) => console.log("onPause ", a)}
-                    onEnd={(a) => console.log("onEnd ", a)}
-                    onError={(a) => console.log("onError ", a)}
+                    onEnd={this.props.onVideoEnd}
+                    onError={(a) => console.error("onError ", a)}
                     onStateChange={(a) => console.log("onStateChange ", a)}
                     onPlaybackRateChange={(a) => console.log("onPlaybackRateChange ", a)}
                     onPlaybackQualityChange={(a) => console.log("onPlaybackQualityChange ", a)}
