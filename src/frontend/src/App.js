@@ -26,6 +26,8 @@ class App extends Component {
 
         this.handleAutoPlayChange = this.handleAutoPlayChange.bind(this);
         this.handleTimerSecondsChange = this.handleTimerSecondsChange.bind(this);
+
+        this.handleVideoEnd = this.handleVideoEnd.bind(this);
     }
 
     skip() {
@@ -75,6 +77,23 @@ class App extends Component {
         this.setState({timerSeconds: event.target.value}, () => {
             console.info(`Changing timerSeconds to ${this.state.timerSeconds}`);
         });
+    }
+
+    handleVideoEnd(event) {
+        if(!this.state.autoPlay) {return};
+        var timeout = this.state.timerSeconds * 1000;
+        setTimeout(() => {
+            console.info(`Playing next video in ${timeout} miliseconds`);
+            if(this.state.queue.length === 0) {
+                //this.setCurrentlyPlaying("", 0);
+                return;
+            };
+            var entry = this.state.queue[0];
+            this.setCurrentlyPlaying(entry, 0);
+            this.deleteEntry(entry, 0);
+            event.target.playVideo();
+        }, timeout);
+        console.log(event);
     }
 
     render() {
