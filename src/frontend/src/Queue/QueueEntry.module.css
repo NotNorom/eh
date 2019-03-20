@@ -5,5 +5,13 @@
 }
 
 .songTitle {
+    text-overflow: ellipsis;
+    padding: 0 1em;
+}
+
+.songTitleLink {
+    text-decoration: none;
+    color: #fff;
+}
 
 }

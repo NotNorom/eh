@@ -77,7 +77,16 @@ class QueueEntry extends Component {
     render() {
         return (
             <li className={style.queueEntry}>
-                <span className={style.songTitle}>{this.state.videoData.snippet.title}</span>
+                #{this.props.index+1}
+                <span className={style.songTitle}>
+                    <a
+                        href={this.props.entry ? "https://youtu.be/" + this.props.entry : "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={style.songTitleLink}
+                    >{this.state.videoData.snippet.title}
+                    </a>
+                </span>
                 <div className={style.controls}>
                     <button onClick={this.props.onPlay}>Play</button>
                     <button onClick={this.props.onMoveUp}>Up</button>
