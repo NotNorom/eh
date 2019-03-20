@@ -15,14 +15,23 @@ class App extends Component {
                 "WZFVeSZrM_I",
             ]
         }
+        this.skip = this.skip.bind(this);
+
         this.setCurrentlyPlaying = this.setCurrentlyPlaying.bind(this);
         this.moveEntryUp = this.moveEntryUp.bind(this);
         this.moveEntryDown = this.moveEntryDown.bind(this);
         this.deleteEntry = this.deleteEntry.bind(this);
     }
 
-    setCurrentlyPlaying(videoId) {
-        console.info("Setting currentlyPlaying: " + JSON.stringify(videoId));
+    skip() {
+        if(this.state.queue.length === 0) {return};
+        var entry = this.state.queue[0];
+        this.setCurrentlyPlaying(entry, 0);
+        this.deleteEntry(entry, 0);
+    }
+
+    setCurrentlyPlaying(videoId, index) {
+        console.info(`Setting ${videoId} as currentlyPlaying`);
         this.setState({currentlyPlaying: videoId});
     }
 
