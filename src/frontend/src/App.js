@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import getVideoId from "get-video-id";
 import VideoPlayer from "./VideoPlayer/VideoPlayer";
 import Queue from "./Queue/Queue";
+import { chat } from "./apiHelper.js";
+import config from "./config.js";
 import "./fonts/sinkin-sans/sinkin-sans.css";
 import "./App.css";
 
@@ -17,9 +20,11 @@ class App extends Component {
                 "WZFVeSZrM_I",
             ]
         }
+        this.onChatMessage = this.onChatMessage.bind(this);
         this.skip = this.skip.bind(this);
 
         this.setCurrentlyPlaying = this.setCurrentlyPlaying.bind(this);
+        this.playEntry = this.playEntry.bind(this);
         this.moveEntryUp = this.moveEntryUp.bind(this);
         this.moveEntryDown = this.moveEntryDown.bind(this);
         this.deleteEntry = this.deleteEntry.bind(this);
@@ -28,6 +33,34 @@ class App extends Component {
         this.handleTimerSecondsChange = this.handleTimerSecondsChange.bind(this);
 
         this.handleVideoEnd = this.handleVideoEnd.bind(this);
+    }
+
+    componentDidMount() {
+        chat.on("PRIVMSG", (msg) => this.onChatMessage(msg));
+        chat.connect().then(() => {
+            chat.join(config.twitchChannel);
+        });
+    }
+
+    onChatMessage(msg) {
+        if(msg.isSelf) {return};
+        if(msg.message.startsWith("!sr")) {
+            var msgParts = msg.message.split(" ");
+            var videoId = getVideoIdFromYoutubeString(msgParts[1]);
+            console.info(`Found videoId in message: ${videoId}`);
+            if(videoId.length > 0) {
+                this.setState((state, props) => {
+                    if(state.queue.includes(videoId)) {
+                        return state;
+                    }
+                    var newQueue = state.queue;
+                    newQueue.push(videoId)
+                    return {queue: newQueue};
+                })
+            } else {
+                chat.say(config.twitchChannel, "Usage: !sr link");
+            }
+        }
     }
 
     skip() {
@@ -40,6 +73,12 @@ class App extends Component {
     setCurrentlyPlaying(videoId, index) {
         console.info(`Setting ${videoId} as currentlyPlaying`);
         this.setState({currentlyPlaying: videoId});
+    }
+
+    playEntry(videoId, index) {
+        console.info(`Playing ${videoId} at index: ${index} up`);
+        this.setCurrentlyPlaying(videoId, index);
+        this.deleteEntry(videoId, index);
     }
 
     moveEntryUp(videoId, index) {
@@ -113,7 +152,7 @@ class App extends Component {
                 <main>
                     <Queue
                         queue={this.state.queue}
-                        onPlay={this.setCurrentlyPlaying}
+                        onPlay={this.playEntry}
                         onMoveUp={this.moveEntryUp}
                         onMoveDown={this.moveEntryDown}
                         onDelete={this.deleteEntry}
@@ -122,6 +161,14 @@ class App extends Component {
             </React.Fragment>
         );
     }
+}
+
+function getVideoIdFromYoutubeString(url) {
+    const {id, service} = getVideoId(url);
+    if(service === "youtube") {
+        return id;
+    }
+    return "";
 }
 
 export default App;
